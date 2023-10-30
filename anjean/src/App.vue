@@ -1,9 +1,6 @@
 <template>
-  <div>
-    <h1>TfL DLR Arrivals</h1>
-    <div id="arrival-data">
-      <DlrService :filteredData="filteredData" :key="updateKey" />
-    </div>
+  <div id="arrival-data" class="container d-flex align-items-center justify-content-center">
+    <DlrService :filteredData="filteredData" :key="updateKey"/>
   </div>
 </template>
 
@@ -27,13 +24,12 @@ export default {
   },
   methods: {
     fetchData() {
-      // Fetch data from the TfL API
       fetch('https://api.tfl.gov.uk/line/dlr/arrivals')
           .then(response => response.json())
           .then(data => {
             this.jsonData = data;
             this.filteredData = data.filter(entry => entry.stationName === 'Stratford International DLR Station');
-            this.updateKey++; // Update the key to trigger the animation
+            this.updateKey++;
           })
           .catch(error => {
             console.error('Error fetching data:', error);
@@ -45,3 +41,12 @@ export default {
   }
 };
 </script>
+<style>
+body {
+  background-image: url("./assets/DLR_roundel.svg");
+  background-repeat: no-repeat;
+  background-position: right;
+  background-size: 70%;
+  opacity: 0.95;
+}
+</style>

@@ -1,17 +1,21 @@
 <template>
-  <div>
-    <h2>DLR Service Information</h2>
+  <div class="">
+    <br>
+    <h1>DLR Services:</h1>
+    <br>
     <transition name="fade">
       <div v-if="sortedData.length > 0">
-        <ul>
-          <div v-for="arrival in sortedData" :key="arrival.id">
-            <p><strong>Station Name:</strong> {{ arrival.stationName }}</p>
-            <p><strong>Destination Name:</strong> {{ arrival.destinationName }}</p>
-            <p><strong>Expected Departure Time:</strong> {{ getBSTTime(arrival.expectedArrival) }}</p>
-            <hr>
-            <br>
+        <div v-for="arrival in sortedData" :key="arrival.id">
+          <div class="card text-bg-light mb-3" style="max-width: 100em;">
+            <div class="card-header"><h2>Service to: {{arrival.destinationName}} </h2></div>
+            <div class="card-body">
+              <h2>Expected Departure Time: {{getBSTTime(arrival.expectedArrival)}}</h2>
+              <h2>Leaving in: ({{timeToNextTrain(arrival.expectedArrival)}} mins)</h2>
+              <h5 class="card-title">Departing from: {{arrival.stationName}}</h5>
+            </div>
           </div>
-        </ul>
+          <br>
+        </div>
       </div>
       <div v-else>
         <p>No arrivals found for Stratford International DLR Station</p>
@@ -23,7 +27,7 @@
 <script>
 export default {
   props: {
-    filteredData: Array // Define the prop for filtered data
+    filteredData: Array
   },
   computed: {
     sortedData() {
@@ -36,23 +40,25 @@ export default {
   },
   methods: {
     getBSTTime(iso8601) {
-      const date = new Date(iso8601);
-      // Adjust for BST (GMT+1)
+      let date = new Date(iso8601);
+      date.setMinutes(date.getMinutes() + 2)
       date.setHours(date.getHours());
-      // Format the time to HH:mm
-      return date.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
+      return date.toLocaleTimeString('en-GB', {hour: '2-digit', minute: '2-digit'});
+    },
+    timeToNextTrain(expectedArrival) {
     }
   }
 };
 </script>
 
 <style>
+/*noinspection ALL*/
 .fade-enter-active, .fade-leave-active {
   transition: opacity 0.5s;
 }
 
-.fade-enter, .fade-leave-to
-{
+/*noinspection CssUnusedSymbol*/
+.fade-enter, .fade-leave-to {
   opacity: 0;
 }
 </style>
