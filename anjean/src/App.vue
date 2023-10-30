@@ -2,8 +2,8 @@
   <div id="arrival-data" class="container d-flex align-items-center justify-content-center">
     <DlrService :filteredData="filteredData" :key="updateKey"/>
   </div>
-  <div class="dlr-logo fixed-bottom container d-flex align-items-end justify-content-end">
-    <img src="./assets/DLR_roundel.svg" alt="">
+  <div class="dlr-logo-container container d-flex align-items-end justify-content-center">
+    <img class="dlr-logo" src="./assets/DLR_roundel.svg" alt="">
   </div>
 </template>
 
@@ -46,10 +46,15 @@ export default {
 </script>
 
 <style>
+.dlr-logo-container {
+
+}
+
+/*TODO: Change logo in PS, and use as background*/
 .dlr-logo {
+  width: 80%;
   z-index: -1;
-  opacity: 0.7;
-  width: 60%;
-  margin-bottom: 4vh;
+  opacity: 0.9;
+  margin-bottom: 1vh;
 }
 </style>

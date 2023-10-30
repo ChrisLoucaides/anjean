@@ -5,7 +5,7 @@
     <h1>DLR Services:</h1>
     <br>
     <transition name="fade">
-      <div v-if="sortedData.length > 0">
+      <div class="cards" v-if="sortedData.length > 0">
         <div v-for="arrival in sortedData" :key="arrival.id">
           <div class="card text-bg-light mb-3 dlr-card" style="max-width: 100em;">
             <div class="card-header"><h2>Service to: {{ stripDlrNamespace(arrival.destinationName) }} <img
@@ -69,6 +69,10 @@ export default {
 /*noinspection CssUnusedSymbol*/
 .fade-enter, .fade-leave-to {
   opacity: 0;
+}
+
+.cards {
+  z-index: 1;
 }
 
 .dlr-card {
