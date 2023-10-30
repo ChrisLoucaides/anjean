@@ -2,6 +2,9 @@
   <div id="arrival-data" class="container d-flex align-items-center justify-content-center">
     <DlrService :filteredData="filteredData" :key="updateKey"/>
   </div>
+  <div class="dlr-logo fixed-bottom container d-flex align-items-end justify-content-end">
+    <img src="./assets/DLR_roundel.svg" alt="">
+  </div>
 </template>
 
 <script>
@@ -41,12 +44,12 @@ export default {
   }
 };
 </script>
+
 <style>
-body {
-  background-image: url("./assets/DLR_roundel.svg");
-  background-repeat: no-repeat;
-  background-position: right;
-  background-size: 70%;
-  opacity: 0.95;
+.dlr-logo {
+  z-index: -1;
+  opacity: 0.7;
+  width: 60%;
+  margin-bottom: 4vh;
 }
 </style>

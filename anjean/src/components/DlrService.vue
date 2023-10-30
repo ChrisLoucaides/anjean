@@ -1,3 +1,4 @@
+<!--suppress JSUnresolvedReference -->
 <template>
   <div class="">
     <br>
@@ -6,12 +7,17 @@
     <transition name="fade">
       <div v-if="sortedData.length > 0">
         <div v-for="arrival in sortedData" :key="arrival.id">
-          <div class="card text-bg-light mb-3" style="max-width: 100em;">
-            <div class="card-header"><h2>Service to: {{arrival.destinationName}} </h2></div>
+          <div class="card text-bg-light mb-3 dlr-card" style="max-width: 100em;">
+            <div class="card-header"><h2>Service to: {{ stripDlrNamespace(arrival.destinationName) }} <img
+                src="../assets/DLR_roundel.svg" alt="" style="width: 1.2em">
+            </h2>
+            </div>
             <div class="card-body">
-              <h2>Expected Departure Time: {{getBSTTime(arrival.expectedArrival)}}</h2>
-              <h2>Leaving in: ({{timeToNextTrain(arrival.expectedArrival)}} mins)</h2>
-              <h5 class="card-title">Departing from: {{arrival.stationName}}</h5>
+              <h2>Expected Departure Time: {{ getBSTTime(arrival.expectedArrival) }}</h2>
+
+              <!--TODO: Fix me-->
+              <h2>Leaving in: ({{ timeToNextTrain(arrival.expectedArrival) }} mins)</h2>
+              <h5 class="card-title">Departing from: {{ stripDlrNamespace(arrival.stationName) }}</h5>
             </div>
           </div>
           <br>
@@ -45,6 +51,9 @@ export default {
       date.setHours(date.getHours());
       return date.toLocaleTimeString('en-GB', {hour: '2-digit', minute: '2-digit'});
     },
+    stripDlrNamespace(stationName) {
+      return stationName.replace("DLR Station", "")
+    },
     timeToNextTrain(expectedArrival) {
     }
   }
@@ -60,5 +69,9 @@ export default {
 /*noinspection CssUnusedSymbol*/
 .fade-enter, .fade-leave-to {
   opacity: 0;
+}
+
+.dlr-card {
+  opacity: 0.90;
 }
 </style>
