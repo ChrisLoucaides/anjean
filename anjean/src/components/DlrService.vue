@@ -16,7 +16,11 @@
               <h2>Expected Departure Time: {{ getBSTTime(arrival.expectedArrival) }}</h2>
 
               <!--TODO: Fix me-->
-              <h2>Leaving in: ({{ timeToNextTrain(arrival.expectedArrival) }} mins)</h2>
+              <h2>Leaving in:
+                <span class="minutes-to-next-train">
+                  <strong>({{ timeToNextTrain(arrival.expectedArrival) }} mins)</strong>
+                </span>
+              </h2>
               <h5 class="card-title">Departing from: {{ stripDlrNamespace(arrival.stationName) }}</h5>
             </div>
           </div>
@@ -47,14 +51,24 @@ export default {
   methods: {
     getBSTTime(iso8601) {
       let date = new Date(iso8601);
-      date.setMinutes(date.getMinutes() + 2)
+      date.setMinutes(date.getMinutes() + 2) //TODO: Refactor
       date.setHours(date.getHours());
       return date.toLocaleTimeString('en-GB', {hour: '2-digit', minute: '2-digit'});
     },
+
     stripDlrNamespace(stationName) {
       return stationName.replace("DLR Station", "")
     },
+
     timeToNextTrain(expectedArrival) {
+
+      let expectedArrivalDate = new Date(expectedArrival);
+      expectedArrivalDate.setMinutes(expectedArrivalDate.getMinutes() + 2) //TODO: Refactor
+      return Math.round(this.convertToMinutes(expectedArrivalDate - new Date()));
+    },
+
+    convertToMinutes(timeToNextTrainInDateFormat) {
+      return timeToNextTrainInDateFormat / (1000 * 60);
     }
   }
 };
@@ -63,7 +77,7 @@ export default {
 <style>
 /*noinspection ALL*/
 .fade-enter-active, .fade-leave-active {
-  transition: opacity 0.5s;
+  transition: opacity 2s;
 }
 
 /*noinspection CssUnusedSymbol*/
@@ -77,5 +91,9 @@ export default {
 
 .dlr-card {
   opacity: 0.90;
+}
+
+.minutes-to-next-train {
+  color: #19b6b1;
 }
 </style>
