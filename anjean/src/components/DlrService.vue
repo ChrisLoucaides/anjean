@@ -2,7 +2,7 @@
 <template>
   <div class="">
     <br>
-    <h1>DLR Services:</h1>
+    <h1>DLR Services: </h1>
     <br>
     <transition name="fade">
       <div class="cards" v-if="sortedData.length > 0">
@@ -35,6 +35,8 @@
 </template>
 
 <script>
+import TimeComponent from "@/components/TimeComponent.vue";
+
 export default {
   props: {
     filteredData: Array

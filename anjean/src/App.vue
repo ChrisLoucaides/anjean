@@ -2,13 +2,11 @@
   <div id="arrival-data" class="container d-flex align-items-center justify-content-center">
     <DlrService :filteredData="filteredData" :key="updateKey"/>
   </div>
-  <div class="dlr-logo-container container d-flex align-items-end justify-content-center">
-    <img class="dlr-logo" src="./assets/DLR_roundel.svg" alt="">
-  </div>
 </template>
 
 <script>
 import DlrService from './components/DlrService.vue';
+
 
 export default {
   components: {
@@ -57,4 +55,14 @@ export default {
   opacity: 0.9;
   margin-bottom: 1vh;
 }
+
+body {
+  background-image: url("./assets/DLR_roundel.svg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: right;
+  background-size: 60%;
+
+}
+
 </style>
