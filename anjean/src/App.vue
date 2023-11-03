@@ -6,11 +6,13 @@
 
 <script>
 import DlrService from './components/DlrService.vue';
+import TimeComponent from "@/components/TimeComponent.vue";
 
 
 export default {
   components: {
-    DlrService
+    DlrService,
+    TimeComponent
   },
   data() {
     return {

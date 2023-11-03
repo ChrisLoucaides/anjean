@@ -1,7 +1,8 @@
 <template>
   <div>
-    <h1>Current Time</h1>
-    <p>{{ currentTime }}</p>
+    <div class="time-container">
+      <h2 class = "current-time"> <strong>{{ currentTime }}</strong></h2>
+    </div>
   </div>
 </template>
 
@@ -28,3 +29,15 @@ export default {
   }
 };
 </script>
+
+<style>
+.time-container {
+  width: 100px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.current-time {
+  color: #19b6b1;
+}
+</style>

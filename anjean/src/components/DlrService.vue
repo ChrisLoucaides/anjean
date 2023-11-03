@@ -2,7 +2,10 @@
 <template>
   <div class="">
     <br>
-    <h1>DLR Services: </h1>
+    <div class="heading">
+      <h2>Current Time:&nbsp;</h2>
+      <TimeComponent></TimeComponent>
+    </div>
     <br>
     <transition name="fade">
       <div class="cards" v-if="sortedData.length > 0">
@@ -13,11 +16,12 @@
             </h2>
             </div>
             <div class="card-body">
-              <h2>Expected Departure Time: {{ getBSTTime(arrival.expectedArrival) }}</h2>
+              <h2>Expected Departure Time: <span class="dlr-color">
+                <strong>{{ getBSTTime(arrival.expectedArrival) }}</strong>
+              </span></h2>
 
-              <!--TODO: Fix me-->
               <h2>Leaving in:
-                <span class="minutes-to-next-train">
+                <span class="dlr-color">
                   <strong>({{ timeToNextTrain(arrival.expectedArrival) }} mins)</strong>
                 </span>
               </h2>
@@ -38,6 +42,10 @@
 import TimeComponent from "@/components/TimeComponent.vue";
 
 export default {
+  components: {
+    TimeComponent
+  },
+
   props: {
     filteredData: Array
   },
@@ -95,7 +103,12 @@ export default {
   opacity: 0.90;
 }
 
-.minutes-to-next-train {
+.dlr-color {
   color: #19b6b1;
+}
+
+.heading {
+  display: flex;
+  flex-direction: row;
 }
 </style>
