@@ -61,7 +61,7 @@ export default {
   methods: {
     getBSTTime(iso8601) {
       let date = new Date(iso8601);
-      date.setMinutes(date.getMinutes() + 2) //TODO: Refactor
+      date.setMinutes(date.getMinutes())
       date.setHours(date.getHours());
       return date.toLocaleTimeString('en-GB', {hour: '2-digit', minute: '2-digit'});
     },
@@ -71,9 +71,8 @@ export default {
     },
 
     timeToNextTrain(expectedArrival) {
-
       let expectedArrivalDate = new Date(expectedArrival);
-      expectedArrivalDate.setMinutes(expectedArrivalDate.getMinutes() + 2) //TODO: Refactor
+      expectedArrivalDate.setMinutes(expectedArrivalDate.getMinutes())
       return Math.round(this.convertToMinutes(expectedArrivalDate - new Date()));
     },
 

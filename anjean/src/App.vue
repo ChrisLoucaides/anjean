@@ -50,7 +50,6 @@ export default {
 
 }
 
-/*TODO: Change logo in PS, and use as background*/
 .dlr-logo {
   width: 80%;
   z-index: -1;
