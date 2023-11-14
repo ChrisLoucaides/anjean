@@ -32,7 +32,9 @@
         </div>
       </div>
       <div v-else>
-        <p>No arrivals found for Stratford International DLR Station</p>
+        <div class="card text-bg-light mb-3 dlr-card" style="max-width: 100em;">
+          <h2 class="no-departures p-2">No departures found for Stratford International DLR Station</h2>
+        </div>
       </div>
     </transition>
   </div>
